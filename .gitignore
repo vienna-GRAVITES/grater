@@ -7,3 +7,6 @@ __pycache__
 *.egg-info
 .mypy_cache
 lock.*.json
+.cache
+uv.lock
+.venv
