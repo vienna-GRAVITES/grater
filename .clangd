@@ -1,0 +1,8 @@
+CompileFlags:
+  Add: 
+  - -I./include
+  - -I/usr/include/python3.12
+  - -I/usr/include/timetagger
+  - -I./build/_deps/nanobind\-src/include
+  - -std=c++20
+

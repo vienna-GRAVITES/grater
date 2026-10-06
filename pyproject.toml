@@ -1,0 +1,79 @@
+[build-system]
+requires = [
+    "scikit-build-core>=0.10",
+    "swabian-timetagger>=2.22.6",
+]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "grater"
+version = "0.1.0"
+description = "Python bindings for the Gravites project"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+    {name = "Peter Barrow"}
+]
+dependencies = [
+    "scikit-build-core>=0.10",
+    "numpy<=2.2.6",
+    "matplotlib",
+    "ipython>=9.17.1",
+    "swabian-timetagger>=2.22.6",
+
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+    "mkdocs-gen-files",
+    "mkdocs-literate-nav",
+    "mkdocs-section-index",
+]
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+    "mkdocs-gen-files",
+    "mkdocs-literate-nav",
+    "mkdocs-section-index",
+]
+
+[tool.uv]
+no-build-isolation-package = ["grater"]
+
+[tool.uv.extra-build-dependencies]
+grater = ["scikit-build-core>=0.10"]
+
+[tool.scikit-build]
+build-dir = "build"
+cmake.source-dir = "."
+cmake.build-type = "Release"
+wheel.packages = []                      # extension-only wheel; see note below
+build.targets = ["grater"]          # only build the Python module, skip `process`
+install.components = ["python_module"]
+
+[tool.scikit-build.cmake.define]
+# Forward the Swabian dependency location if the user has set it in their shell;
+# harmless if unset since your CMakeLists already searches default install paths.
+TIMETAGGER_ROOT = {env = "TIMETAGGER_ROOT", default = ""}
+
+[tool.ruff]
+line-length = 80
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+docstring-code-format = true
+docstring-code-line-length = 60
+preview = true
+
+[tool.ruff.lint]
+preview = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

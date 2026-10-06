@@ -1,0 +1,11 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 100
+BreakBeforeBraces: Attach          # opening brace on the same line
+BinPackParameters: false           # one parameter per line once wrapped
+BinPackArguments: false            # same for call arguments
+AlignAfterOpenBracket: BlockIndent # closing paren on its own line (clang-format 14+)
+AllowAllParametersOfDeclarationOnNextLine: false
+Cpp11BracedListStyle: true
